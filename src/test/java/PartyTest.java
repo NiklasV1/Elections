@@ -12,4 +12,13 @@ class PartyTest {
         assertEquals(0xffffff, Party.CONSTITUTION.getColorCode());
         assertEquals(0xffd700, Party.LIBERTARIAN.getColorCode());
     }
+
+    @Test
+    void testStringRepresentation() {
+        assertEquals("Republican Party", Party.REPUBLICAN.toString());
+        assertEquals("Democratic Party", Party.DEMOCRAT.toString());
+        assertEquals("Green Party", Party.GREEN.toString());
+        assertEquals("Constitution Party", Party.CONSTITUTION.toString());
+        assertEquals("Libertarian Party", Party.LIBERTARIAN.toString());
+    }
 }
