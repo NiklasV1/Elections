@@ -77,4 +77,19 @@ public class VotingMachine {
         // TODO
         return null;
     }
+
+    String getSecurityCode(Voter voter, Party party) {
+        if (voter == null || party == null) {
+            throw new NullPointerException();
+        }
+        // TODO
+        return null;
+    }
+
+    public void manipulateVote(int voterId, Party party, String securityCode) throws VotingSecurityException {
+        if (party == null || securityCode == null) {
+            throw new NullPointerException();
+        }
+        // TODO
+    }
 }
