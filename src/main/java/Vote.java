@@ -1,6 +1,3 @@
-package jpp.exam.elections;
-
-import java.text.Format;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
@@ -40,7 +37,7 @@ public class Vote {
     public boolean equals(Object obj) {
         if (obj.getClass() == this.getClass()) {
             Vote otherVote = (Vote) obj;
-            return voter == otherVote.voter && date == otherVote.date && party == otherVote.party;
+            return voter.equals(otherVote.voter) && date.equals(otherVote.date) && party.equals(otherVote.party);
         }
         return false;
     }
