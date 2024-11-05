@@ -19,29 +19,33 @@ class VoterTest {
 
     @Test
     void getFirstName() {
-        var voter = new Voter("john", "doe", 1);
+        var voter = new Voter("John", "Doe", 1);
+        assertEquals("John", voter.getFirstName());
     }
 
     @Test
     void getLastName() {
-        var voter = new Voter("john", "doe", 1);
-
+        var voter = new Voter("John", "Doe", 1);
+        assertEquals("Doe", voter.getLastName());
     }
 
     @Test
     void getId() {
-        var voter = new Voter("john", "doe", 1);
-
+        var voter = new Voter("John", "Doe", 1);
+        assertEquals(1, voter.getId());
     }
 
     @Test
     void testToString() {
-        var voter = new Voter("john", "doe", 1);
-
+        var voter = new Voter("John", "Doe", 1);
+        assertEquals("Doe, John (1)", voter.toString());
     }
 
     @Test
     void testEquals() {
+        var voter1 = new Voter("John", "Doe", 1);
+        var voter2 = new Voter("Jane", "Smith", 1);
+        assertEquals(voter1, voter2);
     }
 
     @Test
