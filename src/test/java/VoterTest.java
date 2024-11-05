@@ -62,6 +62,7 @@ class VoterTest {
         voters.add(new Voter("B", "B", 5));
 
         Collections.sort(voters);
+        System.out.println("Sorting Test:");
         System.out.println(voters);
 
         assertEquals(1,voters.get(0).getId());
