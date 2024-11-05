@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class PartyTest {
 
     @Test
-    void testColorCodes() {
+    void getColorCode() {
         assertEquals(0xff0000, Party.REPUBLICAN.getColorCode());
         assertEquals(0x0000ff, Party.DEMOCRAT.getColorCode());
         assertEquals(0x008000, Party.GREEN.getColorCode());
@@ -14,7 +14,7 @@ class PartyTest {
     }
 
     @Test
-    void testStringRepresentation() {
+    void testToString() {
         assertEquals("Republican Party", Party.REPUBLICAN.toString());
         assertEquals("Democratic Party", Party.DEMOCRAT.toString());
         assertEquals("Green Party", Party.GREEN.toString());

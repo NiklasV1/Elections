@@ -1,5 +1,3 @@
-package jpp.exam.elections;
-
 import java.util.Objects;
 
 public class Voter implements Comparable<Voter> {
