@@ -1,5 +1,3 @@
-package jpp.exam.elections;
-
 import java.util.Comparator;
 
 public class VoteComparator implements Comparator<Vote> {
@@ -12,7 +10,7 @@ public class VoteComparator implements Comparator<Vote> {
             default -> switch (o1.getVoter().compareTo(o2.getVoter())) {
                 case -1 -> -1;
                 case 1 -> 1;
-                default -> switch (o1.getParty().compareTo(o2.getParty())) {
+                default -> switch (o1.getParty().toString().compareTo(o2.getParty().toString())) {
                     case -1 -> -1;
                     case 1 -> 1;
                     default -> 0;
