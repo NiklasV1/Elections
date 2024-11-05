@@ -91,10 +91,22 @@ public class VotingMachine {
     }
 
     public Map<Party, Double> getDistribution() {
+        Map<Party, Double> result = new HashMap<>();
+        Map<Party, Integer> totalVotes = new HashMap<>();
 
+        for (Party party : Party.values()) {
+            totalVotes.put(party, 0);
+        }
 
-        // TODO
-        return null;
+        for (Vote vote : votes) {
+            totalVotes.put(vote.getParty(), totalVotes.get(vote.getParty()) + 1);
+        }
+
+        for (Party party : Party.values()) {
+            result.put(party, totalVotes.get(party).doubleValue() / votes.size());
+        }
+
+        return result;
     }
 
     public List<String> showDistribution() {
