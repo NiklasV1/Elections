@@ -73,4 +73,29 @@ class VoteTest {
 
         assertEquals(vote1, vote2);
     }
+
+    @Test
+    void getClone() {
+        var voter = new Voter("John", "Doe", 1);
+        LocalDateTime date = LocalDateTime.of(2024, 11, 5, 18, 9, 20);
+        Party party = Party.DEMOCRAT;
+
+        var vote1 = new Vote(voter, date, party);
+        var vote2 = vote1.getClone();
+
+        // Change Voter
+        vote2.voter = new Voter("Jane", "Smith", 2);
+        assertEquals(1, vote1.getVoter().getId());
+        assertEquals(2, vote2.getVoter().getId());
+
+        // Change Date
+        vote2.date = LocalDateTime.of(2025, 11, 5, 18, 9, 20);
+        assertEquals(2024, vote1.getDateTime().getYear());
+        assertEquals(2025, vote2.getDateTime().getYear());
+
+        // Change Party
+        vote2.party = Party.REPUBLICAN;
+        assertEquals(Party.DEMOCRAT, vote1.getParty());
+        assertEquals(Party.REPUBLICAN, vote2.getParty());
+    }
 }

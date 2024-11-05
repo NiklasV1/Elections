@@ -61,4 +61,8 @@ public class Voter implements Comparable<Voter> {
     public int hashCode() {
         return Objects.hash(firstName, lastName, id);
     }
+
+    public Voter getClone() {
+        return new Voter(firstName, lastName, id);
+    }
 }

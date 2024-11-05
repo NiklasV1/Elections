@@ -46,4 +46,9 @@ public class Vote {
     public int hashCode() {
         return Objects.hash(voter, date, party);
     }
+
+    public Vote getClone() {
+        Voter voterClone = voter.getClone();
+        return new Vote(voterClone, date, party);
+    }
 }

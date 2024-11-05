@@ -71,4 +71,15 @@ class VoterTest {
         assertEquals(2,voters.get(3).getId());
         assertEquals(5,voters.get(4).getId());
     }
+
+    @Test
+    void getClone() {
+        var voter1 = new Voter("John", "Doe", 1);
+        var voter2 = voter1.getClone();
+
+        voter2.id = 2;
+
+        assertEquals(1, voter1.getId());
+        assertEquals(2, voter2.getId());
+    }
 }
