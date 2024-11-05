@@ -1,5 +1,9 @@
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class VoterTest {
@@ -50,5 +54,20 @@ class VoterTest {
 
     @Test
     void compareTo() {
+        List<Voter> voters = new ArrayList<>();
+        voters.add(new Voter("A", "A", 1));
+        voters.add(new Voter("A", "B", 2));
+        voters.add(new Voter("A", "A", 3));
+        voters.add(new Voter("B", "A", 4));
+        voters.add(new Voter("B", "B", 5));
+
+        Collections.sort(voters);
+        System.out.println(voters);
+
+        assertEquals(1,voters.get(0).getId());
+        assertEquals(3,voters.get(1).getId());
+        assertEquals(4,voters.get(2).getId());
+        assertEquals(2,voters.get(3).getId());
+        assertEquals(5,voters.get(4).getId());
     }
 }
