@@ -52,14 +52,22 @@ public class VotingMachine {
     }
 
     public List<Vote> getVotes() {
-        return Collections.unmodifiableList(votes);
+        // Deep clones to prevent mutability
+        List<Vote> result = new ArrayList<>();
+
+        for (Vote vote : votes) {
+            result.add(vote.getClone());
+        }
+
+        return Collections.unmodifiableList(result);
     }
 
     public List<Voter> getVoters() {
+        // Deep clones to prevent mutability
         List<Voter> result = new ArrayList<>();
 
         for (Vote vote : votes) {
-            result.add(vote.getVoter());
+            result.add(vote.getVoter().getClone());
         }
 
         Collections.sort(result);
@@ -104,8 +112,19 @@ public class VotingMachine {
     }
 
     public List<String> showDistribution() {
-        // TODO
-        return null;
+        Map<Party, Double> distribution = getDistribution();
+        List<String> result = new ArrayList<>();
+
+        for (Party p : Party.values()) {
+            int percentagePoints = (int) Math.round(distribution.get(p) * 100);
+            String partyName = p.toString();
+
+            String distributionString = partyName + " ".repeat(Math.max(0, 18 - partyName.length()) + 1) + "#".repeat(percentagePoints);
+            result.add(distributionString);
+        }
+
+        result.sort(Comparator.comparingInt(String::length));
+        return result.reversed();
     }
 
     String getSecurityCode(Voter voter, Party party) {
