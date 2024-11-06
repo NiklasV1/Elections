@@ -38,6 +38,7 @@ public class VotingMachine {
             votes.remove(previousVote);
             votes.add(vote);
         }
+        votes.sort(new VoteComparator());
     }
 
     public void addAll(Collection<Vote> votes) {
@@ -51,25 +52,18 @@ public class VotingMachine {
     }
 
     public List<Vote> getVotes() {
-        List<Vote> result = new ArrayList<>();
-
-        for (Vote vote : votes) {
-            result.add(vote.getClone());
-        }
-
-        result.sort(new VoteComparator());
-        return result;
+        return Collections.unmodifiableList(votes);
     }
 
     public List<Voter> getVoters() {
         List<Voter> result = new ArrayList<>();
 
         for (Vote vote : votes) {
-            result.add(vote.getVoter().getClone());
+            result.add(vote.getVoter());
         }
 
         Collections.sort(result);
-        return result;
+        return Collections.unmodifiableList(result);
     }
 
     public Vote getVote(Voter voter) {
