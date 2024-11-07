@@ -105,7 +105,11 @@ public class VotingMachine {
         }
 
         for (Party party : Party.values()) {
-            result.put(party, totalVotes.get(party).doubleValue() / votes.size());
+            if (!votes.isEmpty()){
+                result.put(party, totalVotes.get(party).doubleValue() / votes.size());
+            } else {
+                result.put(party, 0d);
+            }
         }
 
         return result;

@@ -1,0 +1,3 @@
+public enum Menus {
+    CREATE, DISTRIBUTION, ALLVOTES, MANIPULATE, EXIT
+}
