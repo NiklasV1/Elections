@@ -138,7 +138,18 @@ public class VotingMachine {
         if (party == null || securityCode == null) {
             throw new NullPointerException();
         }
-        // TODO
+
+        Vote vote = getVote(new Voter("A", "A", voterId));
+        if (vote == null) {
+            throw new IllegalArgumentException();
+        }
+
+        String realSecurityCode = getSecurityCode(vote.getVoter(), party);
+        if (!Objects.equals(realSecurityCode, securityCode)) {
+            throw new VotingSecurityException("Wrong Security Code!");
+        } else {
+            vote.party = party;
+        }
     }
 
     private String securityCodeFromName(String name) {
@@ -154,7 +165,7 @@ public class VotingMachine {
             }
         }
         if (name.length() % 2 == 1) {
-            result.append(name.charAt(name.length()-1));
+            result.append(name.charAt(name.length() - 1));
         }
 
         return result.toString();

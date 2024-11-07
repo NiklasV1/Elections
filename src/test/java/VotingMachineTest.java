@@ -313,5 +313,20 @@ class VotingMachineTest {
 
     @Test
     void manipulateVote() {
+        VotingMachine votingMachine = new VotingMachine();
+
+        assertThrows(NullPointerException.class, () -> votingMachine.manipulateVote(1, null, "AB11"));
+        assertThrows(NullPointerException.class, () -> votingMachine.manipulateVote(1, Party.REPUBLICAN, null));
+
+        assertThrows(IllegalArgumentException.class, () -> votingMachine.manipulateVote(1, Party.REPUBLICAN, "AB11"));
+
+        Voter voter = new Voter("Max", "Mustermann", 10001);
+        LocalDateTime date = LocalDateTime.of(Year.now().getValue(), 10, 10, 12, 0, 0);
+
+        votingMachine.add(new Vote(voter, date, Party.DEMOCRAT));
+
+        assertThrows(VotingSecurityException.class, () -> votingMachine.manipulateVote(10001, Party.REPUBLICAN, "AB11"));
+        assertDoesNotThrow(() -> votingMachine.manipulateVote(10001, Party.REPUBLICAN, "MaxMsuetmrnan52"));
+        assertEquals(Party.REPUBLICAN, votingMachine.votes.getFirst().party);
     }
 }
