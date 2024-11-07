@@ -300,7 +300,15 @@ class VotingMachineTest {
 
     @Test
     void getSecurityCode() {
+        VotingMachine votingMachine = new VotingMachine();
+        Voter voter1 = new Voter("Max", "Mustermann", 10001);
+        Voter voter2 = new Voter("Barack", "Obama", 125);
 
+        assertThrows(NullPointerException.class, () -> votingMachine.getSecurityCode(null, Party.REPUBLICAN));
+        assertThrows(NullPointerException.class, () -> votingMachine.getSecurityCode(voter1, null));
+
+        assertEquals("MaxMsuetmrnan52", votingMachine.getSecurityCode(voter1, Party.REPUBLICAN));
+        assertEquals("BaarkcObmaa68", votingMachine.getSecurityCode(voter2, Party.DEMOCRAT));
     }
 
     @Test

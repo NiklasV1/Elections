@@ -131,8 +131,7 @@ public class VotingMachine {
         if (voter == null || party == null) {
             throw new NullPointerException();
         }
-        // TODO
-        return null;
+        return securityCodeFromName(voter.getFirstName() + voter.getLastName()) + (voter.getId() % 17) + (party.getColorCode() % 19);
     }
 
     public void manipulateVote(int voterId, Party party, String securityCode) throws VotingSecurityException {
@@ -140,5 +139,24 @@ public class VotingMachine {
             throw new NullPointerException();
         }
         // TODO
+    }
+
+    private String securityCodeFromName(String name) {
+        StringBuilder result = new StringBuilder();
+        int length = name.length() / 2;
+        for (int i = 0; i < length; i++) {
+            char a = name.charAt(i * 2);
+            char b = name.charAt(i * 2 + 1);
+            if (a >= 97 && b >= 97) {
+                result.append(b).append(a);
+            } else {
+                result.append(a).append(b);
+            }
+        }
+        if (name.length() % 2 == 1) {
+            result.append(name.charAt(name.length()-1));
+        }
+
+        return result.toString();
     }
 }
